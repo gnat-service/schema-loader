@@ -3,7 +3,9 @@
  * @fileoverview 请填写简要的文件说明.
  * @author joc (Chen Wen)
  */
-module.exports = {
-    say: {type: String, value: 'miaow'},
-    name: {type: String, required: true}
+module.exports = function (Schema) {
+    return new Schema({
+        say: {type: String, value: 'miaow'},
+        name: {type: String, required: true}
+    });
 };

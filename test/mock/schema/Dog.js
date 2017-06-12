@@ -4,6 +4,8 @@
  * @author joc (Chen Wen)
  */
 module.exports = {
-    say: {type: String, value: 'woof'},
-    name: {type: String, required: true}
+    schema: {
+        say: {type: String, value: 'woof'},
+        name: {type: String, required: true}
+    }
 };

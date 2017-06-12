@@ -17,7 +17,16 @@ module.exports = function (App) {
     }
     let dir = configs.schemaDir = configs.schemaDir || 'schema';
     let getSchema = path => {
-        return new mongoose.Schema(require(path));
+        let m = require(path);
+        if (typeof m === 'function') {
+            return m(mongoose.Schema);
+        }
+
+        let s = new mongoose.Schema(m.schema, m.options);
+        Object.keys(m)
+            .filter(k => ['schema', 'options'].indexOf(k) < 0)
+            .forEach(k => Object.assign(s, m[k]));
+        return s;
     };
 
     App.schema = {};
